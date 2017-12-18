@@ -7,14 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B48D8DB55E7E57ED48B2031 /* Pods_CouchBaseLiteSium2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E488C42E43FB7DED53FBC4 /* Pods_CouchBaseLiteSium2.framework */; };
 		6A18C8191FDFAC4700F3D40C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A18C8181FDFAC4700F3D40C /* AppDelegate.swift */; };
 		6A18C81B1FDFAC4700F3D40C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A18C81A1FDFAC4700F3D40C /* ViewController.swift */; };
 		6A18C81E1FDFAC4700F3D40C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A18C81C1FDFAC4700F3D40C /* Main.storyboard */; };
 		6A18C8201FDFAC4700F3D40C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6A18C81F1FDFAC4700F3D40C /* Assets.xcassets */; };
 		6A18C8231FDFAC4700F3D40C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A18C8211FDFAC4700F3D40C /* LaunchScreen.storyboard */; };
+		6A18C82E1FDFAECA00F3D40C /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A18C82D1FDFAEC200F3D40C /* CFNetwork.framework */; };
+		6A18C8301FDFAEDD00F3D40C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A18C82F1FDFAED200F3D40C /* Security.framework */; };
+		6A18C8321FDFAEEB00F3D40C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A18C8311FDFAEE600F3D40C /* SystemConfiguration.framework */; };
+		6A18C8341FDFAEFA00F3D40C /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A18C8331FDFAEF900F3D40C /* libsqlite3.tbd */; };
+		6A18C8361FDFAF0600F3D40C /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A18C8351FDFAF0600F3D40C /* libz.tbd */; };
+		6A18C8381FDFAF1500F3D40C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A18C8371FDFAF1500F3D40C /* libc++.tbd */; };
+		6AE376391FDFB5C100808B02 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE376381FDFB5C100808B02 /* CouchbaseLite.framework */; };
+		6AE3763A1FDFB60700808B02 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE376381FDFB5C100808B02 /* CouchbaseLite.framework */; };
+		6AE3763B1FDFB60800808B02 /* CouchbaseLite.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE376381FDFB5C100808B02 /* CouchbaseLite.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		6AE3763E1FDFB84000808B02 /* CouchbaseLite.framework.dSYM in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE3763D1FDFB84000808B02 /* CouchbaseLite.framework.dSYM */; };
+		6AE376401FDFB84500808B02 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE3763F1FDFB84500808B02 /* CouchbaseLite.framework */; };
+		6AE376421FDFB84E00808B02 /* 0D4AE8A7-ECE2-3904-A726-8D111844D43D.bcsymbolmap in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE376411FDFB84E00808B02 /* 0D4AE8A7-ECE2-3904-A726-8D111844D43D.bcsymbolmap */; };
+		6AE376441FDFB85500808B02 /* F9300519-22DF-39FB-820E-8EA9A3D9BC53.bcsymbolmap in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE376431FDFB85500808B02 /* F9300519-22DF-39FB-820E-8EA9A3D9BC53.bcsymbolmap */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		6AE3763C1FDFB60800808B02 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6AE3763B1FDFB60800808B02 /* CouchbaseLite.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		29E488C42E43FB7DED53FBC4 /* Pods_CouchBaseLiteSium2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchBaseLiteSium2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A18C8151FDFAC4700F3D40C /* CouchBaseLiteSium2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchBaseLiteSium2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A18C8181FDFAC4700F3D40C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A18C81A1FDFAC4700F3D40C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +51,20 @@
 		6A18C81F1FDFAC4700F3D40C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A18C8221FDFAC4700F3D40C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6A18C8241FDFAC4700F3D40C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6A18C82D1FDFAEC200F3D40C /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		6A18C82F1FDFAED200F3D40C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		6A18C8311FDFAEE600F3D40C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6A18C8331FDFAEF900F3D40C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		6A18C8351FDFAF0600F3D40C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		6A18C8371FDFAF1500F3D40C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		6AE376381FDFB5C100808B02 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = "../../../Downloads/couchbase-lite-ios-community_1.4.0-3/CouchbaseLite.framework"; sourceTree = "<group>"; };
+		6AE3763D1FDFB84000808B02 /* CouchbaseLite.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CouchbaseLite.framework.dSYM; path = Carthage/Build/iOS/CouchbaseLite.framework.dSYM; sourceTree = "<group>"; };
+		6AE3763F1FDFB84500808B02 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLite.framework; path = Carthage/Build/iOS/CouchbaseLite.framework; sourceTree = "<group>"; };
+		6AE376411FDFB84E00808B02 /* 0D4AE8A7-ECE2-3904-A726-8D111844D43D.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; name = "0D4AE8A7-ECE2-3904-A726-8D111844D43D.bcsymbolmap"; path = "Carthage/Build/iOS/0D4AE8A7-ECE2-3904-A726-8D111844D43D.bcsymbolmap"; sourceTree = "<group>"; };
+		6AE376431FDFB85500808B02 /* F9300519-22DF-39FB-820E-8EA9A3D9BC53.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; name = "F9300519-22DF-39FB-820E-8EA9A3D9BC53.bcsymbolmap"; path = "Carthage/Build/iOS/F9300519-22DF-39FB-820E-8EA9A3D9BC53.bcsymbolmap"; sourceTree = "<group>"; };
+		6AE376451FDFB86D00808B02 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
+		7C321407D3F20A0FBA2A1648 /* Pods-CouchBaseLiteSium2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchBaseLiteSium2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchBaseLiteSium2/Pods-CouchBaseLiteSium2.debug.xcconfig"; sourceTree = "<group>"; };
+		E366B10F1141370E0573EDC6 /* Pods-CouchBaseLiteSium2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchBaseLiteSium2.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchBaseLiteSium2/Pods-CouchBaseLiteSium2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +72,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AE376441FDFB85500808B02 /* F9300519-22DF-39FB-820E-8EA9A3D9BC53.bcsymbolmap in Frameworks */,
+				6AE376421FDFB84E00808B02 /* 0D4AE8A7-ECE2-3904-A726-8D111844D43D.bcsymbolmap in Frameworks */,
+				6AE3763E1FDFB84000808B02 /* CouchbaseLite.framework.dSYM in Frameworks */,
+				6AE376401FDFB84500808B02 /* CouchbaseLite.framework in Frameworks */,
+				6A18C8341FDFAEFA00F3D40C /* libsqlite3.tbd in Frameworks */,
+				6A18C8381FDFAF1500F3D40C /* libc++.tbd in Frameworks */,
+				6A18C8361FDFAF0600F3D40C /* libz.tbd in Frameworks */,
+				6A18C8321FDFAEEB00F3D40C /* SystemConfiguration.framework in Frameworks */,
+				6AE3763A1FDFB60700808B02 /* CouchbaseLite.framework in Frameworks */,
+				6A18C8301FDFAEDD00F3D40C /* Security.framework in Frameworks */,
+				6A18C82E1FDFAECA00F3D40C /* CFNetwork.framework in Frameworks */,
+				6AE376391FDFB5C100808B02 /* CouchbaseLite.framework in Frameworks */,
+				5B48D8DB55E7E57ED48B2031 /* Pods_CouchBaseLiteSium2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +96,9 @@
 			children = (
 				6A18C8171FDFAC4700F3D40C /* CouchBaseLiteSium2 */,
 				6A18C8161FDFAC4700F3D40C /* Products */,
+				6AE376381FDFB5C100808B02 /* CouchbaseLite.framework */,
+				6A18C82C1FDFAEC100F3D40C /* Frameworks */,
+				F05D2D18604B467217310B2A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +123,34 @@
 			path = CouchBaseLiteSium2;
 			sourceTree = "<group>";
 		};
+		6A18C82C1FDFAEC100F3D40C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6AE376451FDFB86D00808B02 /* CouchbaseLite.framework */,
+				6AE376431FDFB85500808B02 /* F9300519-22DF-39FB-820E-8EA9A3D9BC53.bcsymbolmap */,
+				6AE376411FDFB84E00808B02 /* 0D4AE8A7-ECE2-3904-A726-8D111844D43D.bcsymbolmap */,
+				6AE3763F1FDFB84500808B02 /* CouchbaseLite.framework */,
+				6AE3763D1FDFB84000808B02 /* CouchbaseLite.framework.dSYM */,
+				6A18C8371FDFAF1500F3D40C /* libc++.tbd */,
+				6A18C8351FDFAF0600F3D40C /* libz.tbd */,
+				6A18C8331FDFAEF900F3D40C /* libsqlite3.tbd */,
+				6A18C8311FDFAEE600F3D40C /* SystemConfiguration.framework */,
+				6A18C82F1FDFAED200F3D40C /* Security.framework */,
+				6A18C82D1FDFAEC200F3D40C /* CFNetwork.framework */,
+				29E488C42E43FB7DED53FBC4 /* Pods_CouchBaseLiteSium2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F05D2D18604B467217310B2A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7C321407D3F20A0FBA2A1648 /* Pods-CouchBaseLiteSium2.debug.xcconfig */,
+				E366B10F1141370E0573EDC6 /* Pods-CouchBaseLiteSium2.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +158,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6A18C8271FDFAC4700F3D40C /* Build configuration list for PBXNativeTarget "CouchBaseLiteSium2" */;
 			buildPhases = (
+				C05AAEABFF1C9C83C7ED8FA7 /* [CP] Check Pods Manifest.lock */,
 				6A18C8111FDFAC4700F3D40C /* Sources */,
 				6A18C8121FDFAC4700F3D40C /* Frameworks */,
 				6A18C8131FDFAC4700F3D40C /* Resources */,
+				B4D5DAA8B3650A4205B6E0D8 /* [CP] Embed Pods Frameworks */,
+				FEDC1D25376125F87928023B /* [CP] Copy Pods Resources */,
+				6AE3763C1FDFB60800808B02 /* Embed Frameworks */,
+				6AE376461FDFBC8A00808B02 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -130,6 +222,71 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6AE376461FDFBC8A00808B02 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/myfile",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		B4D5DAA8B3650A4205B6E0D8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchBaseLiteSium2/Pods-CouchBaseLiteSium2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C05AAEABFF1C9C83C7ED8FA7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CouchBaseLiteSium2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FEDC1D25376125F87928023B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CouchBaseLiteSium2/Pods-CouchBaseLiteSium2-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6A18C8111FDFAC4700F3D40C /* Sources */ = {
@@ -272,12 +429,19 @@
 		};
 		6A18C8281FDFAC4700F3D40C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7C321407D3F20A0FBA2A1648 /* Pods-CouchBaseLiteSium2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G48LL7L4X6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = CouchBaseLiteSium2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Sium.SmartHome.CouchBaseLiteSium2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -287,12 +451,19 @@
 		};
 		6A18C8291FDFAC4700F3D40C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E366B10F1141370E0573EDC6 /* Pods-CouchBaseLiteSium2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = G48LL7L4X6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = CouchBaseLiteSium2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Sium.SmartHome.CouchBaseLiteSium2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CouchbaseLite
 
 class ViewController: UIViewController {
 
