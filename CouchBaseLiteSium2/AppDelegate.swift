@@ -10,10 +10,28 @@ import UIKit
 import CouchbaseLite
 
 
+
+
+private let kDatabaseName = "grocery-sync"
+
+private let kServerDbURL = NSURL(string: "http://193.34.145.251:4984/todo")!
+
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    
+    let database: CBLDatabase!
+    
+    
+    override init() {
+        database = try? CBLManager.sharedInstance().databaseNamed(kDatabaseName)
+    }
+    
+    
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
