@@ -1,0 +1,9 @@
+{
+  "commitish" : "04fbe5e6a522f375f2c9e33d26f1c98a1cfe2455",
+  "iOS" : [
+    {
+      "name" : "CouchbaseLite",
+      "hash" : "559c6eef9aca2ce7a2b12b2051c7de6ede987e81b4cd38f37d281a0b5f69b1c0"
+    }
+  ]
+}
