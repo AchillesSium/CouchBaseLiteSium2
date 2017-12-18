@@ -11,6 +11,13 @@ import CouchbaseLite
 
 class ViewController: UIViewController {
 
+    
+    @IBOutlet weak var addItemTextField: UITextField!
+    
+    @IBOutlet weak var numberOfItemTextField: UITextField!
+    
+    @IBOutlet weak var couChTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
