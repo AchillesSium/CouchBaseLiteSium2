@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private var _syncError: NSError?
     
     let database: CBLDatabase!
-    
+    var parse: AnyObject!
     
     override init() {
         database = try? CBLManager.sharedInstance().databaseNamed(kDatabaseName)
@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             return
         }
+        
         
         // Initialize replication:
         print("1")

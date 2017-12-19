@@ -9,8 +9,8 @@
 import UIKit
 import CouchbaseLite
 
-class ViewController: UIViewController, UITextFieldDelegate {
-
+class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate,UITableViewDataSource {
+    
     
     @IBOutlet weak var addItemTextField: UITextField!
     
@@ -19,11 +19,29 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var couChTableView: UITableView!
     
     
+    
+    
     var database: CBLDatabase!
     let inputs = Inputs()
+    var parse = [datas]()
+    var cell = CustomTableViewCell()
+    var docsEnumerator: CBLQueryEnumerator!
+    var liveQuery: CBLLiveQuery!
+    
+    
+    
+   
+    
+    
+    enum datas: String {
+        case texts = "text"
+        case nums = "number"
+    }
+    
     
     //MARK: - Initialization
     func useDatabase(database: CBLDatabase!) -> Bool {
+        
         guard database != nil else {return false}
         self.database = database
         // Define a view with a map function that indexes to-do items by creation date:
@@ -43,23 +61,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         database.viewNamed("byNum").setMapBlock({ (doc, emit) in
             if let num = doc["number"] as? String {
-                
-                
                 emit(num, doc)
-                
-                
             }
         }, reduce: nil, version: "2")
         
         /*let view = database?.viewNamed("byNum")
-         if view?.mapBlock == nil {
-         view?.setMapBlock({ (doc, emit) in
-         if let type: String = doc["number"] as? String{
-         self.doc1 = type
-         print(type)
-         emit(type, nil)
-         }
-         },reduce: nil, version: "2")
+            if view?.mapBlock == nil {
+                view?.setMapBlock({ (doc, emit) in
+                    if let type: String = doc["number"] as? String{
+                        
+                        emit(type, nil)
+                    }
+                },reduce: nil, version: "2")
          }*/
         
         /*database.viewNamed("byDate").setMapBlock(version: "2") { (doc, emit) in
@@ -88,6 +101,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         self.addItemTextField.delegate = self
         self.numberOfItemTextField.delegate = self
+        
+        
+        
+        self.couChTableView.delegate = self
+        self.couChTableView.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
         
         inputs.text = addItemTextField.text as AnyObject
@@ -105,14 +123,93 @@ class ViewController: UIViewController, UITextFieldDelegate {
              self.dataSource.query = query
              //docu = self.dataSource.labelProperty = "text"
              self.dataSource.labelProperty = "number"// Document property to display in the cell label*/
-            
+        
             let query2 = database.viewNamed("byNum").createQuery().asLive()
             query2.descending = true
            // self.dataSource.query = query2
           //  self.dataSource.labelProperty = "number"
             //print(docu)
+            //print(query2.rows)
+        
+    
         }
+        getAllDocumentForUserDatabase()
+        
     }
+    
+    func getAllDocumentForUserDatabase() {
+        self.liveQuery = self.database?.createAllDocumentsQuery().asLive()
+        
+        guard self.liveQuery != nil else {
+            return
+        }
+        
+        // 2: You can optionally set a number of properties on the query object.
+        // Explore other properties on the query object
+        self.liveQuery?.limit = UInt(UINT32_MAX) // All documents
+        
+        //   query.postFilter =
+        
+        //3. Start observing for changes to the database
+        self.addLiveQueryObserverAndStartObserving()
+        
+        
+        // 4: Run the query to fetch documents asynchronously
+        self.liveQuery?.runAsync({ (enumerator, error) in
+            switch error {
+            case nil:
+                // 5: The "enumerator" is of type CBLQueryEnumerator and is an enumerator for the results
+                self.docsEnumerator = enumerator
+                print("fuffuguyg")
+                print("live enumerator \(self.docsEnumerator)")
+            default:
+                //self.showAlertWithTitle(NSLocalizedString("Data Fetch Error!", comment: ""), message: error.localizedDescription)
+                print(error)
+            }
+        })
+    }
+    
+    func addLiveQueryObserverAndStartObserving(){
+        
+        self.liveQuery.addObserver(self, forKeyPath: "rows", options: NSKeyValueObservingOptions.new, context: nil)
+    
+       
+        
+    // 2. Start observing changes
+         liveQuery.start()
+        
+        
+        /*if keyPath == "rows" {
+            self.docsEnumerator = self.liveQuery.rows
+            couChTableView.reloadData()
+        }*/
+}
+    //Table View delegates
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 50
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomTableViewCell
+        
+        if let queryRow = docsEnumerator?.row(at: UInt(indexPath.row)) {
+            print ("row is \(String(describing: queryRow.document))")
+            if let userProps = queryRow.document?.userProperties, let text = userProps[datas.texts.rawValue] as? String, let number = userProps[datas.nums.rawValue] as? String {
+                
+                cell.itemText.text = text
+                cell.numberOfItemText.text = number
+            }
+        }
+        
+     
+        
+        return cell
+    }
+    
+    
+    
 
     
     //TextField Delegates
