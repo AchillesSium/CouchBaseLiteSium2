@@ -25,10 +25,16 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     let inputs = Inputs()
     var parse = [datas]()
     var cell = CustomTableViewCell()
-    var docsEnumerator: CBLQueryEnumerator!
+    var rowCount: Int!
+    
+   
     var liveQuery: CBLLiveQuery!
     
-    
+    var docsEnumerator: CBLQueryEnumerator? {
+        didSet {
+            self.couChTableView.reloadData()
+        }
+    }
     
    
     
@@ -137,6 +143,14 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.couChTableView.reloadData()
+    }
+    
+    
+    
+    
     func getAllDocumentForUserDatabase() {
         self.liveQuery = self.database?.createAllDocumentsQuery().asLive()
         
@@ -176,7 +190,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
        
         
     // 2. Start observing changes
-         liveQuery.start()
+         self.liveQuery.start()
         
         
         /*if keyPath == "rows" {
@@ -186,7 +200,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
 }
     //Table View delegates
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        if self.rowCount != nil {
+            self.rowCount = self.rowCount + 1
+        }
+        
+        
+        return self.rowCount ?? (Int(self.docsEnumerator?.count ?? 0))
     }
     
     
@@ -194,22 +213,27 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomTableViewCell
         
+        print("this is number of row \(String(describing: self.docsEnumerator?.count))")
+        
         if let queryRow = docsEnumerator?.row(at: UInt(indexPath.row)) {
             print ("row is \(String(describing: queryRow.document))")
             if let userProps = queryRow.document?.userProperties, let text = userProps[datas.texts.rawValue] as? String, let number = userProps[datas.nums.rawValue] as? String {
-                
+                self.rowCount = userProps.count
                 cell.itemText.text = text
                 cell.numberOfItemText.text = number
+                print("this is index path \(indexPath.row)")
             }
         }
-        
-     
-        
         return cell
     }
     
     
-    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "rows" {
+            self.docsEnumerator = self.liveQuery?.rows
+            self.couChTableView.reloadData()
+        }
+    }
 
     
     //TextField Delegates
