@@ -60,6 +60,7 @@
 		6A18C8331FDFAEF900F3D40C /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		6A18C8351FDFAF0600F3D40C /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		6A18C8371FDFAF1500F3D40C /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		6A3E9E0E1FE9054100593553 /* CouchBaseLiteSium2-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "CouchBaseLiteSium2-Bridging-Header.h"; path = "../couchbase-lite-ios-starterapp/CouchBaseLiteSium2-Bridging-Header.h"; sourceTree = "<group>"; };
 		6AE282341FE798A4006D54AD /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		6AE282361FE79985006D54AD /* Inputs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inputs.swift; sourceTree = "<group>"; };
 		6AE282381FE79A21006D54AD /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
@@ -135,6 +136,7 @@
 		6A18C82C1FDFAEC100F3D40C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6A3E9E0E1FE9054100593553 /* CouchBaseLiteSium2-Bridging-Header.h */,
 				6AE376451FDFB86D00808B02 /* CouchbaseLite.framework */,
 				6AE376431FDFB85500808B02 /* F9300519-22DF-39FB-820E-8EA9A3D9BC53.bcsymbolmap */,
 				6AE376411FDFB84E00808B02 /* 0D4AE8A7-ECE2-3904-A726-8D111844D43D.bcsymbolmap */,
@@ -451,7 +453,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = CouchBaseLiteSium2/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Sium.SmartHome.CouchBaseLiteSium2;
@@ -473,7 +475,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = CouchBaseLiteSium2/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Sium.SmartHome.CouchBaseLiteSium2;

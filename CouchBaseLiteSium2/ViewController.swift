@@ -25,12 +25,15 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     let inputs = Inputs()
     var parse = [datas]()
     var cell = CustomTableViewCell()
-    var docsEnumerator: CBLQueryEnumerator!
     var liveQuery: CBLLiveQuery!
     
     
     
-   
+    fileprivate var docsEnumerator:CBLQueryEnumerator? {
+        didSet {
+            self.couChTableView.reloadData()
+        }
+    }
     
     
     enum datas: String {
@@ -104,8 +107,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         
         
         
-        self.couChTableView.delegate = self
-        self.couChTableView.dataSource = self
+        //self.couChTableView.delegate = self
+        //self.couChTableView.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
         
         inputs.text = addItemTextField.text as AnyObject
@@ -137,9 +140,24 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        //couChTableView.reloadData()
+    }
+    
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.removeLiveQueryObserverAndStopObserving()
+    }
+    
+    
+    
     func getAllDocumentForUserDatabase() {
         self.liveQuery = self.database?.createAllDocumentsQuery().asLive()
-        
+        //self.liveQuery = database.viewNamed("byDate").createQuery().asLive()
+        //self.liveQuery.descending = true
         guard self.liveQuery != nil else {
             return
         }
@@ -161,7 +179,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                 // 5: The "enumerator" is of type CBLQueryEnumerator and is an enumerator for the results
                 self.docsEnumerator = enumerator
                 print("fuffuguyg")
-                print("live enumerator \(self.docsEnumerator)")
+                print("live enumerator \(String(describing: self.docsEnumerator))")
             default:
                 //self.showAlertWithTitle(NSLocalizedString("Data Fetch Error!", comment: ""), message: error.localizedDescription)
                 print(error)
@@ -176,18 +194,37 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
        
         
     // 2. Start observing changes
-         liveQuery.start()
+         self.liveQuery.start()
         
         
         /*if keyPath == "rows" {
             self.docsEnumerator = self.liveQuery.rows
             couChTableView.reloadData()
         }*/
-}
+    }
+    
+    
+    func removeLiveQueryObserverAndStopObserving() {
+        guard liveQuery != nil else {
+            return
+        }
+        // 1. iOS Specific. Remove observer from the live Query object
+        self.liveQuery.removeObserver(self, forKeyPath: "rows")
+        
+        // 2. Stop observing changes
+        self.liveQuery.stop()
+        
+    }
+
+    
+    
     //Table View delegates
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         return 50
+
     }
+    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -203,16 +240,24 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             }
         }
         
-     
         
         return cell
     }
     
     
-    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "rows" {
+            self.docsEnumerator = self.liveQuery?.rows
+            self.couChTableView.reloadData()
+            
+        }
+    }
 
     
     //TextField Delegates
+    
+    
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         //textField.resignFirstResponder()
@@ -221,8 +266,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         return true
     }
     
-    
-    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         if addItemTextField.text == "" {
             return
         }
@@ -256,6 +300,42 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
         return
     }
+    
+    
+    /*func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
+        if addItemTextField.text == "" {
+            return
+        }
+        
+        if numberOfItemTextField.text == "" {
+            return
+        }
+        
+        inputs.text = addItemTextField.text as AnyObject
+        inputs.number = numberOfItemTextField.text as AnyObject
+        
+        addItemTextField.text = nil
+        numberOfItemTextField.text = nil
+        
+        let properties: [String : AnyObject] = [
+            "text": inputs.text as AnyObject,
+            "number": inputs.number as AnyObject,
+            "check": false as AnyObject,
+            "created_at": CBLJSON.jsonObject(with: NSDate() as Date) as AnyObject
+        ]
+        
+        // Save the document:
+        let doc = database.createDocument()
+        do {
+            try doc.putProperties(properties)
+            print("Database Created")
+        } catch let error as NSError {
+            print("jyfufgv")
+            //self.appDelegate.showAlert(message: "Couldn't save new item", error)
+            print("this is \(error)")
+        }
+        return
+    }*/
     
     
 
