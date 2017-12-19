@@ -29,6 +29,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
    
     var liveQuery: CBLLiveQuery!
+    var query: CBLQuery!
     
     var docsEnumerator: CBLQueryEnumerator? {
         didSet {
@@ -36,6 +37,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
     }
     
+    var normalQueryEnumerator: CBLQueryEnumerator? {
+        didSet {
+            self.couChTableView.reloadData()
+        }
+    }
    
     
     
@@ -130,18 +136,50 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
              //docu = self.dataSource.labelProperty = "text"
              self.dataSource.labelProperty = "number"// Document property to display in the cell label*/
         
-            let query2 = database.viewNamed("byNum").createQuery().asLive()
-            query2.descending = true
+            query = database.viewNamed("byNum").createQuery().asLive()
+            query.descending = true
+            guard self.query != nil else {
+                return
+            }
+            self.query?.limit = UInt(UINT32_MAX)
            // self.dataSource.query = query2
           //  self.dataSource.labelProperty = "number"
             //print(docu)
             //print(query2.rows)
-        
+            self.addNormalLiveQueryObserverAndStartObserving()
     
+            self.query?.runAsync({ (enumerator, error) in
+                switch error {
+                case nil:
+                    // 5: The "enumerator" is of type CBLQueryEnumerator and is an enumerator for the results
+                    self.normalQueryEnumerator = enumerator
+                    
+                default:
+                    //self.showAlertWithTitle(NSLocalizedString("Data Fetch Error!", comment: ""), message: error.localizedDescription)
+                    print(error)
+                }
+            })
+            
+            
         }
-        getAllDocumentForUserDatabase()
+       // getAllDocumentForUserDatabase()
         
     }
+    
+    
+    func addNormalLiveQueryObserverAndStartObserving() {
+        self.query.addObserver(self, forKeyPath: "rows", options: NSKeyValueObservingOptions.new, context: nil)
+        
+        do {
+            try query.run()
+        } catch {
+            print(error)
+        }
+    }
+    
+    
+    
+    
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -205,7 +243,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
         
         
-        return self.rowCount ?? (Int(self.docsEnumerator?.count ?? 0))
+        return (Int(self.normalQueryEnumerator?.count ?? 0))
     }
     
     
@@ -215,7 +253,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         
         print("this is number of row \(String(describing: self.docsEnumerator?.count))")
         
-        if let queryRow = docsEnumerator?.row(at: UInt(indexPath.row)) {
+        if let queryRow = normalQueryEnumerator?.row(at: UInt(indexPath.row)) {
             print ("row is \(String(describing: queryRow.document))")
             if let userProps = queryRow.document?.userProperties, let text = userProps[datas.texts.rawValue] as? String, let number = userProps[datas.nums.rawValue] as? String {
                 self.rowCount = userProps.count
@@ -230,11 +268,24 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "rows" {
-            self.docsEnumerator = self.liveQuery?.rows
+            //self.docsEnumerator = self.liveQuery?.rows
+            //self.normalQueryEnumerator = self.query.row
+            self.query?.runAsync({ (enumerator, error) in
+                switch error {
+                case nil:
+                    // 5: The "enumerator" is of type CBLQueryEnumerator and is an enumerator for the results
+                    self.normalQueryEnumerator = enumerator
+                    
+                default:
+                    //self.showAlertWithTitle(NSLocalizedString("Data Fetch Error!", comment: ""), message: error.localizedDescription)
+                    print(error)
+                }
+            })
             self.couChTableView.reloadData()
         }
     }
 
+    
     
     //TextField Delegates
     
@@ -278,6 +329,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             //self.appDelegate.showAlert(message: "Couldn't save new item", error)
             print("this is \(error)")
         }
+
+        self.couChTableView.reloadData()
         return
     }
     
