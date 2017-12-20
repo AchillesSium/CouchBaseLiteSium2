@@ -141,6 +141,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             guard self.query != nil else {
                 return
             }
+            
+            self.query.startKey = "2"
+            self.query.endKey = "0"
+            
+            
             self.query?.limit = UInt(UINT32_MAX)
            // self.dataSource.query = query2
           //  self.dataSource.labelProperty = "number"
