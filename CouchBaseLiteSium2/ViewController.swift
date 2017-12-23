@@ -28,6 +28,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     var rowCount: Int!
     
    
+    var textDictionary = [String : String]()
+    var numberDictionary = [String : String]()
+    
+    
     var liveQuery: CBLLiveQuery!
     var query: CBLQuery!
     var textQuery: CBLQuery!
@@ -197,8 +201,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             })
             
             
+            
         }
        // getAllDocumentForUserDatabase()
+        
         
     }
     
@@ -218,6 +224,30 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             try self.textQuery.run()
         } catch {
             print(error)
+        }
+    }
+    
+    
+    
+    func saveDataOnLocalDictionaries(){
+        for i in 0...(Int(self.numberQueryEnumerator?.count ?? 0)) {
+            if let numberQueryRow = self.numberQueryEnumerator?.row(at: UInt(i)) {
+                
+                if let userProps = numberQueryRow.document?.userProperties, let _ = userProps[datas.texts.rawValue] as? String, let number = userProps[datas.nums.rawValue] as? String, let numberQueryID = numberQueryRow.documentID {
+                    self.numberDictionary = [numberQueryID : number]
+                    //print(self.numberDictionary)
+                }
+            }
+        }
+        
+        for j in 0...(Int(self.textQueryEnumerator?.count ?? 0)) {
+            if let textQueryRow = self.textQueryEnumerator?.row(at: UInt(j)) {
+                
+                if let userProps = textQueryRow.document?.userProperties, let text = userProps[datas.texts.rawValue] as? String, let _ = userProps[datas.nums.rawValue] as? String, let textQueryID = textQueryRow.documentID {
+                    self.textDictionary[textQueryID] = text
+                    print(self.textDictionary)
+                }
+            }
         }
     }
     
@@ -257,7 +287,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                 // 5: The "enumerator" is of type CBLQueryEnumerator and is an enumerator for the results
                 self.docsEnumerator = enumerator
                 print("fuffuguyg")
-                print("live enumerator \(self.docsEnumerator)")
+                print("live enumerator \(String(describing: self.docsEnumerator))")
             default:
                 //self.showAlertWithTitle(NSLocalizedString("Data Fetch Error!", comment: ""), message: error.localizedDescription)
                 print(error)
@@ -282,9 +312,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
 }
     //Table View delegates
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.rowCount != nil {
-            self.rowCount = self.rowCount + 1
-        }
+        
         
         
         return (Int(self.numberQueryEnumerator?.count ?? 0))
@@ -292,6 +320,37 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //self.saveDataOnLocalDictionaries()
+        
+        
+       
+            if let numberQueryRow = self.numberQueryEnumerator?.row(at: UInt(indexPath.row)) {
+                
+                if let userProps = numberQueryRow.document?.userProperties, let _ = userProps[datas.texts.rawValue] as? String, let number = userProps[datas.nums.rawValue] as? String, let numberQueryID = numberQueryRow.documentID {
+                    self.numberDictionary = [numberQueryID : number]
+                    //print(self.numberDictionary)
+                }
+            }
+        
+        
+        
+            if let textQueryRow = self.textQueryEnumerator?.row(at: UInt(indexPath.row)) {
+                
+                if let userProps = textQueryRow.document?.userProperties, let text = userProps[datas.texts.rawValue] as? String, let _ = userProps[datas.nums.rawValue] as? String, let textQueryID = textQueryRow.documentID {
+                    self.textDictionary[textQueryID] = text
+                    print(self.textDictionary)
+                }
+            }
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! CustomTableViewCell
         
@@ -385,6 +444,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             print("this is \(error)")
         }
 
+        
         self.couChTableView.reloadData()
         return
     }
