@@ -335,39 +335,43 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         //inputs.text = addItemTextField.text as AnyObject
         //inputs.number = numberOfItemTextField.text as AnyObject
         
-        let id = uniqueIDTextField.text as AnyObject
-        let name = addItemTextField.text as AnyObject
-        let age = numberOfItemTextField.text as AnyObject
         
-        uniqueIDTextField.text = nil
-        addItemTextField.text = nil
-        numberOfItemTextField.text = nil
-        
-        let properties: [String : AnyObject] = [
-            "id" : id,
-            "text": name,
-            "number": age,
-            "check": false as AnyObject,
-            "created_at": CBLJSON.jsonObject(with: NSDate() as Date) as AnyObject
-        ]
-        
-        // Save the document:
-        let doc = database.createDocument()
-        do {
-            try doc.putProperties(properties)
-            print("Database Created")
-        } catch let error as NSError {
-            print("jyfufgv")
-            //self.appDelegate.showAlert(message: "Couldn't save new item", error)
-            print("this is \(error)")
-        }
-
-        self.couChTableView.reloadData()
         return
     }
     
     
     @IBAction func saveAction(_ sender: Any) {
+        
+        if uniqueIDTextField.text != "" && addItemTextField.text != "" && numberOfItemTextField.text != "" {
+            let id = uniqueIDTextField.text as AnyObject
+            let name = addItemTextField.text as AnyObject
+            let age = numberOfItemTextField.text as AnyObject
+            
+            uniqueIDTextField.text = nil
+            addItemTextField.text = nil
+            numberOfItemTextField.text = nil
+            
+            let properties: [String : AnyObject] = [
+                "id" : id,
+                "text": name,
+                "number": age,
+                "check": false as AnyObject,
+                "created_at": CBLJSON.jsonObject(with: NSDate() as Date) as AnyObject
+            ]
+            
+            // Save the document:
+            let doc = database.createDocument()
+            do {
+                try doc.putProperties(properties)
+                print("Database Created")
+            } catch let error as NSError {
+                print("jyfufgv")
+                //self.appDelegate.showAlert(message: "Couldn't save new item", error)
+                print("this is \(error)")
+            }
+            
+            self.couChTableView.reloadData()
+        }
     }
     
     @IBAction func searchAction(_ sender: Any) {
@@ -381,6 +385,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                     numberOfItemTextField.text = String(i.age)
                 }
             }
+        } else {
+            uniqueIDTextField.text = nil
+            addItemTextField.text = nil
+            numberOfItemTextField.text = nil
         }
     }
     
