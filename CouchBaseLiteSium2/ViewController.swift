@@ -142,10 +142,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                 return
             }
             self.query?.limit = UInt(UINT32_MAX)
-           // self.dataSource.query = query2
-          //  self.dataSource.labelProperty = "number"
-            //print(docu)
-            //print(query2.rows)
+           
+            
+            
             self.addNormalLiveQueryObserverAndStartObserving()
     
             self.query?.runAsync({ (enumerator, error) in
