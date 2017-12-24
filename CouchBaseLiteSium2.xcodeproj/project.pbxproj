@@ -29,6 +29,7 @@
 		6AE376401FDFB84500808B02 /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE3763F1FDFB84500808B02 /* CouchbaseLite.framework */; };
 		6AE376421FDFB84E00808B02 /* 0D4AE8A7-ECE2-3904-A726-8D111844D43D.bcsymbolmap in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE376411FDFB84E00808B02 /* 0D4AE8A7-ECE2-3904-A726-8D111844D43D.bcsymbolmap */; };
 		6AE376441FDFB85500808B02 /* F9300519-22DF-39FB-820E-8EA9A3D9BC53.bcsymbolmap in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AE376431FDFB85500808B02 /* F9300519-22DF-39FB-820E-8EA9A3D9BC53.bcsymbolmap */; };
+		6AFAF1131FEF5A6000FB4805 /* CoreData_CouchBase.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6AFAF1111FEF5A6000FB4805 /* CoreData_CouchBase.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -69,6 +70,7 @@
 		6AE376411FDFB84E00808B02 /* 0D4AE8A7-ECE2-3904-A726-8D111844D43D.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; name = "0D4AE8A7-ECE2-3904-A726-8D111844D43D.bcsymbolmap"; path = "Carthage/Build/iOS/0D4AE8A7-ECE2-3904-A726-8D111844D43D.bcsymbolmap"; sourceTree = "<group>"; };
 		6AE376431FDFB85500808B02 /* F9300519-22DF-39FB-820E-8EA9A3D9BC53.bcsymbolmap */ = {isa = PBXFileReference; lastKnownFileType = text; name = "F9300519-22DF-39FB-820E-8EA9A3D9BC53.bcsymbolmap"; path = "Carthage/Build/iOS/F9300519-22DF-39FB-820E-8EA9A3D9BC53.bcsymbolmap"; sourceTree = "<group>"; };
 		6AE376451FDFB86D00808B02 /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
+		6AFAF1121FEF5A6000FB4805 /* CoreData_CouchBase.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData_CouchBase.xcdatamodel; sourceTree = "<group>"; };
 		7C321407D3F20A0FBA2A1648 /* Pods-CouchBaseLiteSium2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchBaseLiteSium2.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchBaseLiteSium2/Pods-CouchBaseLiteSium2.debug.xcconfig"; sourceTree = "<group>"; };
 		E366B10F1141370E0573EDC6 /* Pods-CouchBaseLiteSium2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchBaseLiteSium2.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchBaseLiteSium2/Pods-CouchBaseLiteSium2.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +130,7 @@
 				6A18C81F1FDFAC4700F3D40C /* Assets.xcassets */,
 				6A18C8211FDFAC4700F3D40C /* LaunchScreen.storyboard */,
 				6A18C8241FDFAC4700F3D40C /* Info.plist */,
+				6AFAF1111FEF5A6000FB4805 /* CoreData_CouchBase.xcdatamodeld */,
 			);
 			path = CouchBaseLiteSium2;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				6A18C81B1FDFAC4700F3D40C /* ViewController.swift in Sources */,
 				6AE282371FE79985006D54AD /* Inputs.swift in Sources */,
 				6AE282391FE79A21006D54AD /* Utilities.swift in Sources */,
+				6AFAF1131FEF5A6000FB4805 /* CoreData_CouchBase.xcdatamodeld in Sources */,
 				6A18C8191FDFAC4700F3D40C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -451,7 +455,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = CouchBaseLiteSium2/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Sium.SmartHome.CouchBaseLiteSium2;
@@ -473,7 +477,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = CouchBaseLiteSium2/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Sium.SmartHome.CouchBaseLiteSium2;
@@ -505,6 +509,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		6AFAF1111FEF5A6000FB4805 /* CoreData_CouchBase.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				6AFAF1121FEF5A6000FB4805 /* CoreData_CouchBase.xcdatamodel */,
+			);
+			currentVersion = 6AFAF1121FEF5A6000FB4805 /* CoreData_CouchBase.xcdatamodel */;
+			path = CoreData_CouchBase.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 6A18C80D1FDFAC4700F3D40C /* Project object */;
 }

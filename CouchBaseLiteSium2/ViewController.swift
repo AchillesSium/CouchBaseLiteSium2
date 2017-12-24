@@ -12,6 +12,9 @@ import CouchbaseLite
 class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate,UITableViewDataSource {
     
     
+    @IBOutlet weak var uniqueIDTextField: UITextField!
+    
+    
     @IBOutlet weak var addItemTextField: UITextField!
     
     @IBOutlet weak var numberOfItemTextField: UITextField!
@@ -46,6 +49,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
     
     enum datas: String {
+        case id = "id"
         case texts = "text"
         case nums = "number"
     }
@@ -120,8 +124,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         self.couChTableView.dataSource = self
         // Do any additional setup after loading the view, typically from a nib.
         
-        inputs.text = addItemTextField.text as AnyObject
-        inputs.number = numberOfItemTextField.text as AnyObject
+        //inputs.text = addItemTextField.text as AnyObject
+        //inputs.number = numberOfItemTextField.text as AnyObject
         
         
         // Database-related initialization:
@@ -254,8 +258,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         
         if let queryRow = normalQueryEnumerator?.row(at: UInt(indexPath.row)) {
             print ("row is \(String(describing: queryRow.document))")
-            if let userProps = queryRow.document?.userProperties, let text = userProps[datas.texts.rawValue] as? String, let number = userProps[datas.nums.rawValue] as? String {
+            if let userProps = queryRow.document?.userProperties, let id = userProps[datas.id.rawValue] as? String, let text = userProps[datas.texts.rawValue] as? String, let number = userProps[datas.nums.rawValue] as? String {
                 self.rowCount = userProps.count
+                cell.idText.text = id
                 cell.itemText.text = text
                 cell.numberOfItemText.text = number
                 print("this is index path \(indexPath.row)")
@@ -289,7 +294,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     //TextField Delegates
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        //textField.resignFirstResponder()
+        uniqueIDTextField.resignFirstResponder()
         addItemTextField.resignFirstResponder()
         numberOfItemTextField.resignFirstResponder()
         return true
@@ -304,16 +309,25 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         if numberOfItemTextField.text == "" {
             return
         }
+        if uniqueIDTextField.text == "" {
+            return
+        }
         
-        inputs.text = addItemTextField.text as AnyObject
-        inputs.number = numberOfItemTextField.text as AnyObject
+        //inputs.text = addItemTextField.text as AnyObject
+        //inputs.number = numberOfItemTextField.text as AnyObject
         
+        let id = uniqueIDTextField.text as AnyObject
+        let name = addItemTextField.text as AnyObject
+        let age = numberOfItemTextField.text as AnyObject
+        
+        uniqueIDTextField.text = nil
         addItemTextField.text = nil
         numberOfItemTextField.text = nil
         
         let properties: [String : AnyObject] = [
-            "text": inputs.text as AnyObject,
-            "number": inputs.number as AnyObject,
+            "id" : id,
+            "text": name,
+            "number": age,
             "check": false as AnyObject,
             "created_at": CBLJSON.jsonObject(with: NSDate() as Date) as AnyObject
         ]

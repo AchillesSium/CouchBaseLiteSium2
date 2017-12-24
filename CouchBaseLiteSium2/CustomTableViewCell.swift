@@ -11,6 +11,9 @@ import UIKit
 class CustomTableViewCell: UITableViewCell {
 
     
+    @IBOutlet weak var idText: UILabel!
+    
+    
     @IBOutlet weak var itemText: UILabel!
     
     @IBOutlet weak var numberOfItemText: UILabel!
