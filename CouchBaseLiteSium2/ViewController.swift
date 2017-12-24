@@ -8,6 +8,7 @@
 
 import UIKit
 import CouchbaseLite
+import CoreData
 
 class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate,UITableViewDataSource {
     
@@ -36,7 +37,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     let inputs = Inputs()
     var parse = [datas]()
     var cell = CustomTableViewCell()
-    var rowCount: Int!
+    let core = CoreDataHandler()
+    var person: [Person]? = nil
     
    
     var liveQuery: CBLLiveQuery!
@@ -175,6 +177,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         }
        // getAllDocumentForUserDatabase()
         
+        //CoreDataHandler.savedObjects(id: inputs.id, name: inputs.name, age: inputs.age)
     }
     
     
@@ -249,9 +252,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
 }
     //Table View delegates
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if self.rowCount != nil {
-            self.rowCount = self.rowCount + 1
-        }
         
         
         return (Int(self.normalQueryEnumerator?.count ?? 0))
@@ -267,14 +267,16 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         if let queryRow = normalQueryEnumerator?.row(at: UInt(indexPath.row)) {
             print ("row is \(String(describing: queryRow.document))")
             if let userProps = queryRow.document?.userProperties, let id = userProps[datas.id.rawValue] as? String, let text = userProps[datas.texts.rawValue] as? String, let number = userProps[datas.nums.rawValue] as? String {
-                self.rowCount = userProps.count
-                inputs.id = id
+                
+                inputs.id = Int(id)
                 print("this is id \(inputs.id!)")
                 inputs.name = text
                 print("this is name \(inputs.name!)")
-                inputs.age = number
+                inputs.age = Int(number)
                 print("this is age \(inputs.age!)")
                 
+                
+                core.savedObjects(id: inputs.id, name: inputs.name, age: inputs.age)
                 
                 cell.idText.text = id
                 cell.itemText.text = text
@@ -313,6 +315,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
         uniqueIDTextField.resignFirstResponder()
         addItemTextField.resignFirstResponder()
         numberOfItemTextField.resignFirstResponder()
+        searchTextField.resignFirstResponder()
         return true
     }
     
@@ -364,8 +367,23 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     }
     
     
-
-
+    @IBAction func saveAction(_ sender: Any) {
+    }
+    
+    @IBAction func searchAction(_ sender: Any) {
+        if searchTextField.text != "" {
+            let searchText = Int(searchTextField.text!)
+            person = core.fetchID()
+            for i in person! {
+                if searchText == Int(i.id) {
+                    uniqueIDTextField.text = String(i.id)
+                    addItemTextField.text = i.name
+                    numberOfItemTextField.text = String(i.age)
+                }
+            }
+        }
+    }
+    
     
     var appDelegate : AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate

@@ -11,7 +11,7 @@ import Foundation
 
 class Inputs {
     
-    var id: String!
+    var id: Int!
     var name: String!
-    var age: String!
+    var age: Int!
 }
