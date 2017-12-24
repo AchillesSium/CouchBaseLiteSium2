@@ -46,4 +46,15 @@ class CoreDataHandler: NSObject {
             return person
         }
     }
+    
+    
+    func cleanCoreData() {
+        let context = getContext()
+        let delete = NSBatchDeleteRequest(fetchRequest: Person.fetchRequest())
+        do {
+            try context.execute(delete)
+        } catch {
+            print(error)
+        }
+    }
 }

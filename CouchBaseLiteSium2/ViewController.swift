@@ -46,12 +46,14 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
     var docsEnumerator: CBLQueryEnumerator? {
         didSet {
+            core.cleanCoreData()
             self.couChTableView.reloadData()
         }
     }
     
     var normalQueryEnumerator: CBLQueryEnumerator? {
         didSet {
+            core.cleanCoreData()
             self.couChTableView.reloadData()
         }
     }
@@ -197,6 +199,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        core.cleanCoreData()
         self.couChTableView.reloadData()
     }
     
@@ -303,8 +306,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                     print(error)
                 }
             })
+            core.cleanCoreData()
             self.couChTableView.reloadData()
         }
+        
+        
     }
 
     
@@ -352,11 +358,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             numberOfItemTextField.text = nil
             
             let properties: [String : AnyObject] = [
+                
                 "id" : id,
                 "text": name,
                 "number": age,
                 "check": false as AnyObject,
                 "created_at": CBLJSON.jsonObject(with: NSDate() as Date) as AnyObject
+                
             ]
             
             // Save the document:
@@ -369,7 +377,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
                 //self.appDelegate.showAlert(message: "Couldn't save new item", error)
                 print("this is \(error)")
             }
-            
+            core.cleanCoreData()
             self.couChTableView.reloadData()
         }
     }
@@ -390,6 +398,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             addItemTextField.text = nil
             numberOfItemTextField.text = nil
         }
+    }
+    
+    
+    func gettingDataFromCouchBase() {
+        
     }
     
     
