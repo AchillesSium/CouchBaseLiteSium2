@@ -20,8 +20,16 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
     @IBOutlet weak var numberOfItemTextField: UITextField!
     
     @IBOutlet weak var couChTableView: UITableView!
+  
+    
+    @IBOutlet weak var searchTextField: UITextField!
     
     
+    @IBOutlet weak var searchButtonOutlet: UIButton!
+    
+    
+    
+    @IBOutlet weak var saveButtonOutlet: UIButton!
     
     
     var database: CBLDatabase!
@@ -260,6 +268,14 @@ class ViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate
             print ("row is \(String(describing: queryRow.document))")
             if let userProps = queryRow.document?.userProperties, let id = userProps[datas.id.rawValue] as? String, let text = userProps[datas.texts.rawValue] as? String, let number = userProps[datas.nums.rawValue] as? String {
                 self.rowCount = userProps.count
+                inputs.id = id
+                print("this is id \(inputs.id!)")
+                inputs.name = text
+                print("this is name \(inputs.name!)")
+                inputs.age = number
+                print("this is age \(inputs.age!)")
+                
+                
                 cell.idText.text = id
                 cell.itemText.text = text
                 cell.numberOfItemText.text = number

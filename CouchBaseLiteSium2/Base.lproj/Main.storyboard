@@ -98,6 +98,13 @@
                                 <color key="backgroundColor" red="1" green="0.58466082710461942" blue="0.73449589282074146" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Search"/>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type an ID to search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GqC-XD-xwC">
+                                <rect key="frame" x="92" y="345" width="190" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" red="0.626926138054275" green="1" blue="0.67802252098287208" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -106,6 +113,9 @@
                         <outlet property="addItemTextField" destination="QDe-NK-5u1" id="dle-eW-s6g"/>
                         <outlet property="couChTableView" destination="V0x-gP-S0N" id="939-Jp-Rrr"/>
                         <outlet property="numberOfItemTextField" destination="Hoc-ga-QEr" id="ljA-fM-nk5"/>
+                        <outlet property="saveButtonOutlet" destination="zpd-2O-IBB" id="8Ul-hh-Syp"/>
+                        <outlet property="searchButtonOutlet" destination="3wl-LF-Gvk" id="nF8-ye-whw"/>
+                        <outlet property="searchTextField" destination="GqC-XD-xwC" id="0e8-ks-4ka"/>
                         <outlet property="uniqueIDTextField" destination="OGd-tN-XEA" id="Djb-TI-Myu"/>
                     </connections>
                 </viewController>

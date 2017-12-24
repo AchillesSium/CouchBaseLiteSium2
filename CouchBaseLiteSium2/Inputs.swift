@@ -10,6 +10,8 @@ import Foundation
 
 
 class Inputs {
-    var text: AnyObject!
-    var number: AnyObject!
+    
+    var id: String!
+    var name: String!
+    var age: String!
 }
